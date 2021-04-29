@@ -1,23 +1,21 @@
 ﻿@page "/compdatianag"
-<h3>CompDatiAnag</h3>
-
-<style>
-    td, th {
-        border: 3px solid #dddddd;
-        text-align: center;
-    }
-</style>
+@inject DatiAnagrafici.ClassDatiAnag.DataBase db
 
 <h1>Inserisci i dati anagrafici.</h1>
+<br />
+@if (nuovoDato == null)
+{
 
-<table class="table table-light table-responsive-lg">
-    <thead>
+    <button class="btn btn-primary" @onclick="(e => AggiungiDato())">Aggiungi persona</button>
+
+    <table class="table table-hover">
         <tr>
+            <th>Id</th>
             <th>Nome</th>
             <th>Cognome</th>
             <th>Data di nascita</th>
             <th>Luogo di nascita</th>
-            <th>Codoce fiscale</th>
+            <th>Codice fiscale</th>
             <th>Email</th>
             <th>Tel/cel</th>
             <th>Indirizzo</th>
@@ -26,10 +24,101 @@
             <th>CAP</th>
 
         </tr>
-    </thead>
-</table>
-<button class="btn btn-primary">Salva i dati</button>
+
+        @foreach (DatiAnagrafici.ClassDatiAnag.DatiAnag singolo in db.dati)
+        {
+            <tr>
+                <td>@singolo.Id</td>
+                <td>@singolo.Nome</td>
+                <td>@singolo.Cognome</td>
+                <td>@singolo.Data_di_nascita</td>
+                <td>@singolo.Luogo_di_nascita</td>
+                <td>@singolo.Codice_fiscale</td>
+                <td>@singolo.Email</td>
+                <td>@singolo.Tel_cel</td>
+                <td>@singolo.Indirizzo</td>
+                <td>@singolo.Civico</td>
+                <td>@singolo.Citta</td>
+                <td>@singolo.Cap</td>
+                <td><button class="oi oi-pencil" @onclick="(e => ModificaDato(singolo))">Salva</button></td>
+                <td><button class="oi oi-trash" @onclick="(e => CancellaDato(singolo))">Cancella</button></td>
+            </tr>
+        }
+    </table>
+
+}
+else
+{
+<label> Nome
+    <input @bind-value="nuovoDato.Nome" placeholder="Nome" />
+</label><br />
+<label>Cognome
+    <input @bind-value="nuovoDato.Cognome" placeholder="Cognome" /> 
+</label><br />
+<label>Data di nascita
+    <input @bind-value="nuovoDato.Data_di_nascita" /> 
+</label><br />
+<label>Luogo di nascita
+    <input @bind-value="nuovoDato.Luogo_di_nascita" placeholder="Luogo di nascità" /> 
+</label><br />
+<label>Codice fiscale
+    <input @bind-value="nuovoDato.Codice_fiscale" placeholder="Codice fiscale" /> 
+</label><br />
+<label>Email
+    <input @bind-value="nuovoDato.Email" placeholder="Email" /> 
+</label><br />
+<label>Telefono/Celullare
+    <input @bind-value="nuovoDato.Tel_cel" /> 
+</label><br />
+<label>Indirizzo
+    <input @bind-value="nuovoDato.Indirizzo" placeholder="Indirizzo" /> 
+</label><br />
+<label>Nr. Civico
+    <input @bind-value="nuovoDato.Civico" placeholder="Civico" /> 
+</label><br />
+<label>Città
+    <input @bind-value="nuovoDato.Citta" placeholder="Citta" /> 
+</label><br />
+<label>CAP
+    <input @bind-value="nuovoDato.Cap" /> 
+</label><br />
+
+    <br /><button class="btn btn-primary" @onclick="(e => SalvaDato())">Salva</button>
+    <button class="btn btn-danger" @onclick="(e => AnnullaDato())">Annulla</button>
+}
+
 
 @code {
+    public DatiAnagrafici.ClassDatiAnag.DatiAnag nuovoDato;
 
+    private void AggiungiDato()
+    {
+        nuovoDato = new DatiAnagrafici.ClassDatiAnag.DatiAnag();
+    }
+    public void ModificaDato(DatiAnagrafici.ClassDatiAnag.DatiAnag datoDaMod)
+    {
+        nuovoDato = datoDaMod;
+    }
+    public void CancellaDato(DatiAnagrafici.ClassDatiAnag.DatiAnag datoDaCanc)
+    {
+        db.dati.Remove(datoDaCanc);
+        db.SaveChanges();
+    }
+    public void SalvaDato()
+    {
+        if (nuovoDato.Id == 0)
+        {
+            db.dati.Add(nuovoDato);
+        }
+        else
+        {
+            db.dati.Update(nuovoDato);
+        }
+        db.SaveChanges();
+        nuovoDato = null;
+    }
+    public void AnnullaDato()
+    {
+        nuovoDato = null;
+    }
 }
