@@ -53,35 +53,35 @@ else
 <form>
     <label>
         Nome
-        <input @bind-value="nuovoDato.Nome" placeholder="Nome" />
+        <input @bind-value="nuovoDato.Nome" placeholder="Nome" type="text" />
     </label><br />
     <label>
         Cognome
-        <input @bind-value="nuovoDato.Cognome" placeholder="Cognome" />
+        <input @bind-value="nuovoDato.Cognome" placeholder="Cognome" type="text" />
     </label><br />
     <label>
         Data di nascita
-        <input @bind-value="nuovoDato.Data_di_nascita" placeholder="Quando" />
+        <input @bind-value="nuovoDato.Data_di_nascita" type="date" />
     </label><br />
     <label>
         Luogo di nascita
-        <input @bind-value="nuovoDato.Luogo_di_nascita" placeholder="Luogo di nascità" />
+        <input @bind-value="nuovoDato.Luogo_di_nascita" placeholder="Luogo di nascità" type="text" />
     </label><br />
     <label>
         Codice fiscale
-        <input @bind-value="nuovoDato.Codice_fiscale" placeholder="Codice fiscale" />
+        <input @bind-value="nuovoDato.Codice_fiscale" placeholder="Codice fiscale" type="text" />
     </label><br />
     <label>
         Email
-        <input @bind-value="nuovoDato.Email" placeholder="Email" />
+        <input @bind-value="nuovoDato.Email" type="email" />
     </label><br />
     <label>
         Telefono/Celullare
-        <input @bind-value="nuovoDato.Tel_cel" placeholder="Nr di tel/cel" />
+        <input @bind-value="nuovoDato.Tel_cel" type="number" />
     </label><br />
     <label>
         Indirizzo
-        <input @bind-value="nuovoDato.Indirizzo" placeholder="Indirizzo" />
+        <input @bind-value="nuovoDato.Indirizzo" placeholder="Indirizzo" type="text" />
     </label><br />
     <label>
         Nr. Civico
@@ -89,11 +89,11 @@ else
     </label><br />
     <label>
         Città
-        <input @bind-value="nuovoDato.Citta" placeholder="Citta" />
+        <input @bind-value="nuovoDato.Citta" placeholder="Citta" type="text" />
     </label><br />
     <label>
         CAP
-        <input @bind-value="nuovoDato.Cap" placeholder="cap" />
+        <input @bind-value="nuovoDato.Cap" type="number" />
     </label><br />
 
     <br /><button class="btn btn-primary" @onclick="(e => SalvaDato())">Salva</button>
