@@ -182,10 +182,17 @@ app {
     }
 }
 button{
-    margin: 3px 3px 2px 2px;
+    margin: 5px 5px 5px 5px;
 }
 input{
     margin-top: 2px;
     margin-bottom: 2px;
     border-color: #000000;
+    text-align: center;
+}
+.oi{
+    color: cornflowerblue;
+}
+table, th, td {
+    border: 1px solid black;
 }

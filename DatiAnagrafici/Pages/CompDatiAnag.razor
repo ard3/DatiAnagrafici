@@ -22,7 +22,8 @@
             <th>Civico</th>
             <th>Città</th>
             <th>CAP</th>
-
+            <th>Modifica</th>
+            <th>Cancella</th>
         </tr>
 
         @foreach (DatiAnagrafici.ClassDatiAnag.DatiAnag singolo in db.dati)
@@ -40,8 +41,8 @@
                 <td>@singolo.Civico</td>
                 <td>@singolo.Citta</td>
                 <td>@singolo.Cap</td>
-                <td><button class="oi oi-pencil" @onclick="(e => ModificaDato(singolo))">Salva</button></td>
-                <td><button class="oi oi-trash" @onclick="(e => CancellaDato(singolo))">Cancella</button></td>
+                <td><button class="oi oi-pencil" @onclick="(e => ModificaDato(singolo))"></button></td>
+                <td><button class="oi oi-trash" @onclick="(e => CancellaDato(singolo))"></button></td>
             </tr>
         }
     </table>
@@ -49,42 +50,55 @@
 }
 else
 {
-<label> Nome
-    <input @bind-value="nuovoDato.Nome" placeholder="Nome" />
-</label><br />
-<label>Cognome
-    <input @bind-value="nuovoDato.Cognome" placeholder="Cognome" /> 
-</label><br />
-<label>Data di nascita
-    <input @bind-value="nuovoDato.Data_di_nascita" /> 
-</label><br />
-<label>Luogo di nascita
-    <input @bind-value="nuovoDato.Luogo_di_nascita" placeholder="Luogo di nascità" /> 
-</label><br />
-<label>Codice fiscale
-    <input @bind-value="nuovoDato.Codice_fiscale" placeholder="Codice fiscale" /> 
-</label><br />
-<label>Email
-    <input @bind-value="nuovoDato.Email" placeholder="Email" /> 
-</label><br />
-<label>Telefono/Celullare
-    <input @bind-value="nuovoDato.Tel_cel" /> 
-</label><br />
-<label>Indirizzo
-    <input @bind-value="nuovoDato.Indirizzo" placeholder="Indirizzo" /> 
-</label><br />
-<label>Nr. Civico
-    <input @bind-value="nuovoDato.Civico" placeholder="Civico" /> 
-</label><br />
-<label>Città
-    <input @bind-value="nuovoDato.Citta" placeholder="Citta" /> 
-</label><br />
-<label>CAP
-    <input @bind-value="nuovoDato.Cap" /> 
-</label><br />
+<form>
+    <label>
+        Nome
+        <input @bind-value="nuovoDato.Nome" placeholder="Nome" />
+    </label><br />
+    <label>
+        Cognome
+        <input @bind-value="nuovoDato.Cognome" placeholder="Cognome" />
+    </label><br />
+    <label>
+        Data di nascita
+        <input @bind-value="nuovoDato.Data_di_nascita" placeholder="Quando" />
+    </label><br />
+    <label>
+        Luogo di nascita
+        <input @bind-value="nuovoDato.Luogo_di_nascita" placeholder="Luogo di nascità" />
+    </label><br />
+    <label>
+        Codice fiscale
+        <input @bind-value="nuovoDato.Codice_fiscale" placeholder="Codice fiscale" />
+    </label><br />
+    <label>
+        Email
+        <input @bind-value="nuovoDato.Email" placeholder="Email" />
+    </label><br />
+    <label>
+        Telefono/Celullare
+        <input @bind-value="nuovoDato.Tel_cel" placeholder="Nr di tel/cel" />
+    </label><br />
+    <label>
+        Indirizzo
+        <input @bind-value="nuovoDato.Indirizzo" placeholder="Indirizzo" />
+    </label><br />
+    <label>
+        Nr. Civico
+        <input @bind-value="nuovoDato.Civico" placeholder="Civico" />
+    </label><br />
+    <label>
+        Città
+        <input @bind-value="nuovoDato.Citta" placeholder="Citta" />
+    </label><br />
+    <label>
+        CAP
+        <input @bind-value="nuovoDato.Cap" placeholder="cap" />
+    </label><br />
 
     <br /><button class="btn btn-primary" @onclick="(e => SalvaDato())">Salva</button>
     <button class="btn btn-danger" @onclick="(e => AnnullaDato())">Annulla</button>
+</form>
 }
 
 
