@@ -84,7 +84,7 @@ using DatiAnagrafici.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 105 "C:\Users\ardit\source\repos\DatiAnagrafici\DatiAnagrafici\Pages\CompDatiAnag.razor"
+#line 120 "C:\Users\ardit\source\repos\DatiAnagrafici\DatiAnagrafici\Pages\CompDatiAnag.razor"
        
     public DatiAnagrafici.ClassDatiAnag.DatiAnag nuovoDato;
 

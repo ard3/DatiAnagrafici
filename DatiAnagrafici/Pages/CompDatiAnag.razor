@@ -9,23 +9,25 @@
     <button class="btn btn-primary" @onclick="(e => AggiungiDato())">Aggiungi persona</button>
 
     <table class="table table-hover">
-        <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Cognome</th>
-            <th>Data di nascita</th>
-            <th>Luogo di nascita</th>
-            <th>Codice fiscale</th>
-            <th>Email</th>
-            <th>Tel/cel</th>
-            <th>Indirizzo</th>
-            <th>Civico</th>
-            <th>Città</th>
-            <th>CAP</th>
-            <th>Modifica</th>
-            <th>Cancella</th>
-        </tr>
-
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Data di nascita</th>
+                <th>Luogo di nascita</th>
+                <th>Genere</th>
+                <th>Codice fiscale</th>
+                <th>Email</th>
+                <th>Tel/cel</th>
+                <th>Indirizzo</th>
+                <th>Civico</th>
+                <th>Città</th>
+                <th width="1%">CAP</th>
+                <th width="1%">Modifica</th>
+                <th width="1%">Cancella</th>
+            </tr>
+        </thead>
         @foreach (DatiAnagrafici.ClassDatiAnag.DatiAnag singolo in db.dati)
         {
             <tr>
@@ -34,6 +36,7 @@
                 <td>@singolo.Cognome</td>
                 <td>@singolo.Data_di_nascita</td>
                 <td>@singolo.Luogo_di_nascita</td>
+                <td>@singolo.Genere</td>
                 <td>@singolo.Codice_fiscale</td>
                 <td>@singolo.Email</td>
                 <td>@singolo.Tel_cel</td>
@@ -41,8 +44,12 @@
                 <td>@singolo.Civico</td>
                 <td>@singolo.Citta</td>
                 <td>@singolo.Cap</td>
-                <td><button class="oi oi-pencil" @onclick="(e => ModificaDato(singolo))"></button></td>
-                <td><button class="oi oi-trash" @onclick="(e => CancellaDato(singolo))"></button></td>
+                <td><button class="btn btn-primary" @onclick="(e => ModificaDato(singolo))">
+                    <span class="oi oi-pencil" style="color: white"></span>
+                    </button></td>
+                <td><button class="btn btn-danger" @onclick="(e => CancellaDato(singolo))">
+                    <span class="oi oi-trash" style="color: white"></span>
+                    </button></td>
             </tr>
         }
     </table>
@@ -50,6 +57,7 @@
 }
 else
 {
+
 <form>
     <label>
         Nome
@@ -67,13 +75,20 @@ else
         Luogo di nascita
         <input @bind-value="nuovoDato.Luogo_di_nascita" placeholder="Luogo di nascità" type="text" />
     </label><br />
+    <label> Genere
+                <select class="form-control" id="genere" @bind="nuovoDato.Genere" >
+                    <option value="M/F" default>Seleziona Genere</option>
+                    <option value="M">Maschio</option>
+                    <option value="F">Femina</option>
+                </select>
+    </label><br />
     <label>
         Codice fiscale
-        <input @bind-value="nuovoDato.Codice_fiscale" placeholder="Codice fiscale" type="text" />
+        <input @bind-value="nuovoDato.Codice_fiscale" placeholder="Codice fiscale" type="text" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" required="required" />
     </label><br />
     <label>
         Email
-        <input @bind-value="nuovoDato.Email" type="email" />
+        <input @bind-value="nuovoDato.Email" type="email" required="required" />
     </label><br />
     <label>
         Telefono/Celullare

@@ -20,6 +20,9 @@ namespace DatiAnagrafici.ClassDatiAnag
         [Required(ErrorMessage = "Devi inserire il luogo di nascita ! ")]
         public string Luogo_di_nascita { get; set; }
 
+        [Required(ErrorMessage = "Selezioni il genere !")]
+        public string Genere { get; set; }
+
         [Required(ErrorMessage = "Devi inserire il codice fiscale ! ")]
         public string Codice_fiscale { get; set; }
 
